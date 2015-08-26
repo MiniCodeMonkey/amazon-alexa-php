@@ -1,0 +1,23 @@
+{
+    "name": "minicodemonkey/amazon-alexa-php",
+    "description": "Amazon Alexa interface for PHP",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mathias Hansen",
+            "email": "me@codemonkey.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alexa\\" : "src/"
+        }
+    }
+}
