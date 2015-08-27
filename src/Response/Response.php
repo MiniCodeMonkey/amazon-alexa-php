@@ -45,6 +45,7 @@ class Response {
 				'outputSpeech' => $this->outputSpeech ? $this->outputSpeech->render() : null,
 				'card' => $this->card ? $this->card->render() : null,
 				'reprompt' => $this->reprompt ? $this->reprompt->render() : null,
+				'shouldEndSession' => $this->shouldEndSession ? true : false
 			]
 		];
 	}
