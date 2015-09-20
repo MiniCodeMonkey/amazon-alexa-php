@@ -11,5 +11,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Alexa\Request\LaunchRequest::class, $request);
         $this->assertEquals(new DateTime('2015-05-13 12:34:56Z'), $request->timestamp);
+        $this->assertEquals('amzn1.echo-sdk-ams.app.000000-d0ed-0000-ad00-000000d00ebe', $request->applicationId);
     }
 }
