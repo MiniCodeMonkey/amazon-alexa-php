@@ -37,6 +37,12 @@ class Response {
 		return $this;
 	}
 
+	public function endSession($shouldEndSession = true) {
+		$this->shouldEndSession = $shouldEndSession;
+
+		return $this;
+	}
+
 	public function render() {
 		return [
 			'version' => $this->version,
