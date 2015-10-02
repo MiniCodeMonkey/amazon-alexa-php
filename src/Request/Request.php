@@ -8,10 +8,12 @@ use DateTime;
 abstract class Request {
 	public $requestId;
 	public $timestamp;
+	public $user;
 
 	public function __construct($data) {
 		$this->requestId = $data['request']['requestId'];
 		$this->timestamp = new DateTime($data['request']['timestamp']);
+		$this->user = new User($data['session']['user']);
 	}
 
 	public static function fromData($data) {
