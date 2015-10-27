@@ -13,7 +13,9 @@ class IntentRequest extends Request {
 
 		if (isset($data['request']['intent']['slots'])) {
 			foreach ($data['request']['intent']['slots'] as $slot) {
-				$this->slots[$slot['name']] = $slot['value'];
+				if (isset($slot['value'])) {
+					$this->slots[$slot['name']] = $slot['value'];
+				}
 			}
 		}
 	}
