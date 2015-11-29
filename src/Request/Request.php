@@ -38,7 +38,7 @@ abstract class Request {
 
 	private function validateTimestamp() {
 		$now = new DateTime;
-		$differenceInSeconds = $now->getTimestamp() - $this->timestamp;
+		$differenceInSeconds = $now->getTimestamp() - $this->timestamp->getTimestamp();
 
 		if ($differenceInSeconds > self::TIMESTAMP_VALID_TOLERANCE_SECONDS) {
 			throw new InvalidArgumentException('Request timestamp was too old. Possible replay attack.');
