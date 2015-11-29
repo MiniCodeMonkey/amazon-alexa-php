@@ -6,7 +6,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 {
     public function testLaunchRequest()
     {
-    	$data = json_decode(file_get_contents(__DIR__ . '/stubs/launch-request.json'), true);
+        $data = json_decode(file_get_contents(__DIR__ . '/stubs/launch-request.json'), true);
         $request = Request::fromData($data);
 
         $this->assertInstanceOf(Alexa\Request\LaunchRequest::class, $request);

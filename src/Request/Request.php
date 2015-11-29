@@ -3,9 +3,12 @@
 namespace Alexa\Request;
 
 use RuntimeException;
+use InvalidArgumentException;
 use DateTime;
 
 abstract class Request {
+	const TIMESTAMP_VALID_TOLERANCE_SECONDS = 30;
+
 	public $requestId;
 	public $timestamp;
 	public $user;
@@ -27,5 +30,18 @@ abstract class Request {
 
 		$request = new $className($data);
 		return $request;
+	}
+
+	public function validate() {
+		$this->validateTimestamp();
+	}
+
+	private function validateTimestamp() {
+		$now = new DateTime;
+		$differenceInSeconds = $now->getTimestamp() - $this->timestamp;
+
+		if ($differenceInSeconds > self::TIMESTAMP_VALID_TOLERANCE_SECONDS) {
+			throw new InvalidArgumentException('Request timestamp was too old. Possible replay attack.');
+		}
 	}
 }
