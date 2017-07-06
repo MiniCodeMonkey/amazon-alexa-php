@@ -10,7 +10,7 @@ class StandardCard extends AbstractCard {
 
     public function __construct()
     {
-        $this->title = 'Standard';
+        $this->type = 'Standard';
     }
 
     /**
