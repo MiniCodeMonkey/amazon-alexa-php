@@ -22,22 +22,55 @@ if ($alexaRequest instanceof IntentRequest) {
 }
 ```
 
-### Response
-You can build an Alexa response with the `Response` class. You can optionally set a card or a reprompt too.
+### Responses
+You can build several Alexa responses with the `Response` class. You can optionally set cards or a reprompt, too.
 
 Here's a few examples.
+
+#### Simple text response
+```php
+$response = new \Alexa\Response\Response;
+$response->respond('I\'m your response message');
+```
+
+#### With reprompt
+```php
+$response = new \Alexa\Response\Response;
+$response->reprompt('What is your favourite color?');
+```
+
+#### Cards
+
+For detailled informations on cards check out the following link: https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/providing-home-cards-for-the-amazon-alexa-app#creating-a-home-card-to-display-text-and-an-image
+
+##### SingleCard
 ```php
 $response = new \Alexa\Response\Response;
 $response->respond('Cooool. I\'ll lower the temperature a bit for you!')
 	->withCard('Temperature decreased by 2 degrees');
 ```
 
+##### StandardCard with images
+You can also show images within your card
+
+Please note some notes on image sizing and hosting: https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/providing-home-cards-for-the-amazon-alexa-app#image_size
+
 ```php
 $response = new \Alexa\Response\Response;
-$response->respond('What is your favorite color?')
-	->reprompt('Please tell me your favorite color');
+$response->respond('Cooool. I\'ll lower the temperature a bit and show you an image!')
+	->withImageCardCard('My title', 'My caption text for the image...', 'https://url.to/small-image.jpg', 'https://url.to/large-image.jpg');
 ```
 
+##### LinkAccountCard
+The LinkAccountCard is used for skills with enabled account linking and will show a link to your configured account linking url. As title, text etc. are set automatically there is no possibility to set random text.
+
+```php
+$response = new \Alexa\Response\Response;
+$response->respond('To link the skill with your account, click the linkAccount shown in your alexa app.')
+	->withLinkAccountCard();
+```
+
+#### Output the response
 To output the response, simply use the `->render()` function, e.g. in Laravel you would create the response like so:
 ```php
 return response()->json($response->render());
