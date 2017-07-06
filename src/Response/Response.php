@@ -46,6 +46,7 @@ class Response {
      */
 	public function withImageCard($title, $text = '', $smallImageUrl, $largeImageUrl) {
 	    $this->card = new StandardCard();
+	    $this->card->setTitle($title);
 	    $this->card->setText($text);
 	    $this->card->setSmallImageUrl($smallImageUrl);
 	    $this->card->setLargeImageUrl($largeImageUrl);
