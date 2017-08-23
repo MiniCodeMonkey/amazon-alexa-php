@@ -10,6 +10,7 @@ class Response {
 	public $card = null;
 	public $reprompt = null;
 	public $shouldEndSession = false;
+	public $dialogDelegate = false;
 
 	public function __construct() {
 		$this->outputSpeech = new OutputSpeech;
@@ -37,6 +38,12 @@ class Response {
 		return $this;
 	}
 
+	public function dialogDelegate() {
+		$this->dialogDelegate = true;
+
+		return $this;
+	}
+
 	public function endSession($shouldEndSession = true) {
 		$this->shouldEndSession = $shouldEndSession;
 
@@ -44,6 +51,21 @@ class Response {
 	}
 
 	public function render() {
+        if ($this->dialogDelegate) {
+            return [
+                'version' => $this->version,
+                'sessionAttributes' => $this->sessionAttributes,
+                'response' => [
+                    'shouldEndSession' => $this->shouldEndSession ? true : false,
+                    "directives" => [
+                        [
+                            'type' => 'Dialog.Delegate',
+                        ]
+                    ],
+                ],
+            ];
+        }
+
 		return [
 			'version' => $this->version,
 			'sessionAttributes' => $this->sessionAttributes,
