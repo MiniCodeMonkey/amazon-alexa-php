@@ -38,6 +38,13 @@ $response->respond('What is your favorite color?')
 	->reprompt('Please tell me your favorite color');
 ```
 
+Call `dialogDelegate()` to delegate response to Alexa Skills.
+
+```php
+$response = new \Alexa\Response\Response;
+$response->dialogDelegate();
+```
+
 To output the response, simply use the `->render()` function, e.g. in Laravel you would create the response like so:
 ```php
 return response()->json($response->render());
