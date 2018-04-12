@@ -12,11 +12,13 @@ abstract class Request {
 	public $requestId;
 	public $timestamp;
 	public $user;
+	public $locale;
 
 	public function __construct($data) {
 		$this->requestId = $data['request']['requestId'];
 		$this->timestamp = new DateTime($data['request']['timestamp']);
 		$this->user = new User($data['session']['user']);
+		$this->locale = $data['request']['locale'];
 	}
 
 	public static function fromData($data) {
