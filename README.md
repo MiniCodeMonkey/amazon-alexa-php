@@ -1,4 +1,4 @@
-# Amazon Alexa PHP Library
+# Amazon Alexa PHP Library - An Amazing project
 
 This library provides provides a convient interface for developing Amazon Alexa Skills for your PHP app.
 
